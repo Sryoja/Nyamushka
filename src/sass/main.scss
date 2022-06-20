@@ -1,0 +1,338 @@
+@import "colors";
+@import "fonts";
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  font-family: "TrebuchetMS", arial, sans-serif;
+  font-weight: normal;
+  background: url("../img/Pattern.png");
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::before {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 5e-5) 49.88%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+}
+
+.main__question {
+  margin: 0 0 24px 0;
+  font-family: "exo2", arial, sans-serif;
+  color: #fff;
+  font-size: 36px;
+  line-height: 44px;
+  text-shadow: 0px 1px 1px #000000;
+}
+
+.cards__item {
+  position: relative;
+  width: 320px;
+  height: 509px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px 40px;
+  color: #000000;
+
+  // ---- default hover --------------------------
+
+  &._def-hover {
+    // $defaultHoverBlue
+    // $defaultHoverBuy
+    .card__corner {
+      background: linear-gradient(
+        -45deg,
+        #fff,
+        #fff 26.5px,
+        $defaultHoverBlue 0,
+        $defaultHoverBlue 31.5px,
+        transparent 0
+      );
+    }
+    .card__desc {
+      border-top: 4px solid $defaultHoverBlue;
+      border-right: 4px solid $defaultHoverBlue;
+    }
+    .card__main {
+      border: 4px solid $defaultHoverBlue;
+      border-top: none;
+    }
+    .card__weight {
+      background-color: $defaultHoverBlue;
+    }
+    .card__footer {
+      & a {
+        color: $defaultHoverBuy;
+        border-bottom: 1px dashed $defaultHoverBuy;
+      }
+    }
+  }
+
+  // ----------- Selected --------------------------------------------
+  &._selected {
+    .card__corner {
+      background: linear-gradient(
+        -45deg,
+        #fff,
+        #fff 26.5px,
+        $selectedPink 0,
+        $selectedPink 31.5px,
+        transparent 0
+      );
+    }
+    .card__desc {
+      border-top: 4px solid $selectedPink;
+      border-right: 4px solid $selectedPink;
+    }
+    .card__main {
+      border: 4px solid $selectedPink;
+      border-top: none;
+    }
+    .card__weight {
+      background-color: $selectedPink;
+    }
+    .card__footer {
+      & a {
+        color: $defaultHoverBuy;
+        border-bottom: 1px dashed $defaultHoverBuy;
+      }
+    }
+  }
+  // ------------------Selected Hover------------------------------
+  &._selected-hover {
+    .card__corner {
+      background: linear-gradient(
+        -45deg,
+        #fff,
+        #fff 26.5px,
+        $selectedHoverBorder 0,
+        $selectedHoverBorder 31.5px,
+        transparent 0
+      );
+    }
+    .card__desc {
+      border-top: 4px solid $selectedHoverBorder;
+      border-right: 4px solid $selectedHoverBorder;
+      color: $selectedHoverBorder;
+    }
+    .card__main {
+      border: 4px solid $selectedHoverBorder;
+      border-top: none;
+    }
+    .card__weight {
+      background-color: $selectedHoverBorder;
+    }
+  }
+  //---------------- Disabled -----------------------------
+  &._disabled {
+    .card__corner {
+      background: linear-gradient(
+        -45deg,
+        #fff,
+        #fff 26.5px,
+        $disabledGray 0,
+        $disabledGray 31.5px,
+        transparent 0
+      );
+    }
+    .card__desc {
+      border-top: 4px solid $disabledGray;
+      border-right: 4px solid $disabledGray;
+      color: $disabledGray;
+    }
+    .card__main {
+      border: 4px solid $disabledGray;
+      border-top: none;
+      color: $disabledGray;
+    }
+    .card__bonus-desc {
+      color: $disabledGray;
+    }
+    .card__foto {
+      opacity: 0.5;
+    }
+    .card__weight {
+      background-color: $disabledOval;
+    }
+    .card__footer-msg {
+      color: $disabledDesc;
+    }
+  }
+  //---------------------------------------------------------------
+}
+
+.card__header {
+  display: flex;
+  height: 41px;
+}
+.card__corner {
+  position: relative;
+  width: 41px;
+  background: linear-gradient(
+    -45deg,
+    #fff,
+    #fff 26.5px,
+    $defaultBlue 0,
+    $defaultBlue 31.5px,
+    transparent 0
+  );
+}
+
+.card__desc {
+  margin: 0;
+  padding: 13px 0 0 10px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: $grayText;
+  flex-grow: 1;
+  background-color: #fff;
+  border: 4px solid $defaultBlue;
+  border-bottom: none;
+  border-left: none;
+  border-radius: 0 12px 0 0;
+}
+.card__main {
+  border: 4px solid $defaultBlue;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  height: 468px;
+  position: relative;
+  background-color: #fff;
+  width: 320px;
+  overflow: hidden;
+  padding-left: 44px;
+}
+
+.card__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 56px;
+  color: inherit;
+}
+
+.card__taste {
+  margin: 0;
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: inherit;
+}
+
+.card__bonus {
+  padding-left: 0;
+}
+
+.card__bonus-desc {
+  list-style: none;
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: $grayText;
+}
+
+.card__foto {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.card__weight {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: $defaultBlue;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  &-num {
+    font-size: 42px;
+    line-height: 22px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 22px;
+  }
+  &-kg {
+    font-size: 21px;
+    line-height: 22px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 6px;
+  }
+}
+
+.card__footer {
+  &-msg {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+    color: #ffffff;
+    & a {
+      color: $defaultBlue;
+      border-bottom: 1px dashed $defaultBlue;
+    }
+    & span {
+      color: $defaultBlue;
+    }
+  }
+}
